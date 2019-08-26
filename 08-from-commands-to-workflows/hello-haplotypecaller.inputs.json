@@ -1,0 +1,10 @@
+{
+"HelloHaplotypeCaller.HaplotypeCallerGVCF.input_bam_index": "book-data/germline/bams/mother.bai",
+"HelloHaplotypeCaller.HaplotypeCallerGVCF.input_bam": "book-data/germline/bams/mother.bam",
+"HelloHaplotypeCaller.HaplotypeCallerGVCF.ref_fasta": "book-data/germline/refs/b37_20/ref.fasta",
+"HelloHaplotypeCaller.HaplotypeCallerGVCF.ref_index": "book-data/germline/refs/b37_20/ref.fasta.fai",
+"HelloHaplotypeCaller.HaplotypeCallerGVCF.ref_dict": "book-data/germline/refs/b37_20/ref.dict",
+"HelloHaplotypeCaller.HaplotypeCallerGVCF.intervals": "book-data/germline/intervals/snippet-intervals-min.list",
+"HelloHaplotypeCaller.HaplotypeCallerGVCF.docker_image": "broadinstitute/gatk:4.1.2.0",
+"HelloHaplotypeCaller.HaplotypeCallerGVCF.java_opt": "-Xmx8G"
+}

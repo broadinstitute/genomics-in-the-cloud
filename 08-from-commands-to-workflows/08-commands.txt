@@ -1,0 +1,59 @@
+$ java -version
+
+$ sudo apt install openjdk-8-jre-headless
+
+$ java -version
+
+$ curl -L -O https://github.com/broadinstitute/cromwell/releases/download/44/cromwell-44.jar
+
+$ curl -L -O https://github.com/broadinstitute/cromwell/releases/download/44/womtool-44.jar
+
+$ java -jar cromwell-44.jar --help
+
+$ java -jar womtool-44.jar --help
+
+$ echo "Hello World"
+
+$ java -jar cromwell-44.jar run hello-world/hello-world.wdl
+
+$ java -jar cromwell-44.jar \
+	run hello-world/hello-world-var.wdl \
+	-i hello-world/hello-world.inputs.json
+
+$ java -jar womtool-44.jar \
+    inputs workflows/hello-haplotypecaller.wdl \
+    > sandbox/hello-haplotypecaller.inputs.json
+
+$ cat hello-haplotypecaller.inputs.json
+
+$ cat workflows/hello-haplotypecaller.inputs.json
+
+$ java -jar cromwell-44.jar \
+    run workflows/hello-haplotypecaller.wdl \
+    -i workflows/hello-haplotypecaller.inputs.json
+
+$ head /home/username/cromwell-executions/HelloHaplotypeCaller/9a6a9c97-7453-455c-8cd8-be8af8cb6f7c/call-HaplotypeCallerGVCF/execution/mother.g.vcf
+
+$ cp workflows/hello-haplotypecaller.wdl sandbox/break-haplotypecaller.wdl
+
+$ java -jar cromwell-44.jar \
+	run sandbox/break-haplotypecaller.wdl \
+	-i workflows/hello-haplotypecaller.inputs.json
+
+$ java -jar womtool-44.jar \
+	validate sandbox/break-haplotypecaller.wdl 
+
+$ java -jar cromwell-44.jar \
+	run sandbox/break-haplotypecaller.wdl \
+	-i workflows/hello-haplotypecaller.inputs.json
+
+$ cat /home/username/cromwell-executions/HelloHaplotypeCaller/dd77316f-7c18-4eb1-aa86-e307113c1668/call-HaplotypeCallerGVCF/execution/stderr
+
+$ java -jar womtool-44.jar graph \
+workflows/scatter-haplotypecaller.wdl > scatter-haplotypecaller.dot
+
+$ cat scatter-haplotypecaller.dots
+
+
+
+
