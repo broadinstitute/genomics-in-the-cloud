@@ -1,0 +1,20 @@
+digraph HaplotypeCallerGvcf_GATK4 {
+  compound=true;
+  "call HaplotypeCaller" -> "call MergeGVCFs" 
+  "call CramToBamTask" -> "call HaplotypeCaller" 
+  "call CramToBamTask" -> "scatter (scattered_calling_intervals)" [lhead=cluster_1]
+  "call MergeGVCFs"
+  
+subgraph cluster_0 {
+  "call CramToBamTask"
+  "if (is_cram)" [shape=plaintext]
+}
+      
+  
+subgraph cluster_1 {
+  "call HaplotypeCaller"
+  "scatter (scattered_calling_intervals)" [shape=plaintext]
+}
+      
+}
+
