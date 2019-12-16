@@ -1,3 +1,11 @@
+## This workflow runs the HaplotypeCaller tool from GATK4 in GVCF mode 
+## on a single sample in BAM format. The execution of the HaplotypeCaller 
+## tool is parallelized using an intervals list file. The per-interval
+## output GVCF files are then merged to produce a single GVCF file for 
+## the sample, which can then be used by the joint-discovery workflow
+## according to the GATK Best Practices for germline short variant 
+## discovery.
+
 version 1.0
 
 workflow ScatterHaplotypeCallerGVCF {

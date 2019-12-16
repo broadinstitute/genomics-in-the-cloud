@@ -1,3 +1,10 @@
+## This workflow runs the HaplotypeCaller tool from GATK4 in GVCF mode 
+## on a single sample in BAM format and produces a single GVCF file, 
+## which can then be used by the joint-discovery workflow according 
+## to the GATK Best Practices for germline short variant discovery.
+
+version 1.0 
+
 workflow HelloHaplotypeCaller {
 
 	call HaplotypeCallerGVCF
@@ -5,8 +12,8 @@ workflow HelloHaplotypeCaller {
 
 task HaplotypeCallerGVCF {
 
-input {
-String docker_image
+	input {
+		String docker_image
 		String java_opt
 	
 		File ref_fasta
