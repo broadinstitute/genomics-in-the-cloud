@@ -1,3 +1,5 @@
+version 1.0
+
 workflow HelloWorldAgain {
 
   call WriteGreeting
@@ -14,7 +16,7 @@ workflow HelloWorldAgain {
 
 task WriteGreeting {
 
-  input { 
+  input {
      String greeting
   }
 
