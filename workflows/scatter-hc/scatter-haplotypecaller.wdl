@@ -1,9 +1,9 @@
-## This workflow runs the HaplotypeCaller tool from GATK4 in GVCF mode 
-## on a single sample in BAM format. The execution of the HaplotypeCaller 
+## This workflow runs the HaplotypeCaller tool from GATK4 in GVCF mode
+## on a single sample in BAM format. The execution of the HaplotypeCaller
 ## tool is parallelized using an intervals list file. The per-interval
-## output GVCF files are then merged to produce a single GVCF file for 
+## output GVCF files are then merged to produce a single GVCF file for
 ## the sample, which can then be used by the joint-discovery workflow
-## according to the GATK Best Practices for germline short variant 
+## according to the GATK Best Practices for germline short variant
 ## discovery.
 
 version 1.0
@@ -16,22 +16,22 @@ workflow ScatterHaplotypeCallerGVCF {
         File intervals_list
     }
 
-    String output_basename = basename(input_bam, ".bam") 
+    String output_basename = basename(input_bam, ".bam")
 
     Array[String] calling_intervals = read_lines(intervals_list)
 
     scatter(interval in calling_intervals) {
-        call HaplotypeCallerGVCF { 
-            input: 
+        call HaplotypeCallerGVCF {
+            input:
                 input_bam = input_bam,
                 input_bam_index = input_bam_index,
-                intervals = interval, 
+                intervals = interval,
                 gvcf_name = output_basename + ".scatter.g.vcf"
         }
     }
-    call MergeVCFs { 
-        input: 
-            vcfs = HaplotypeCallerGVCF.output_gvcf, 
+    call MergeVCFs {
+        input:
+            vcfs = HaplotypeCallerGVCF.output_gvcf,
             merged_vcf_name = output_basename + ".merged.g.vcf"
     }
 
@@ -61,9 +61,9 @@ task HaplotypeCallerGVCF {
             -I ${input_bam} \
             -O ${gvcf_name} \
             -L ${intervals} \
-            -ERC GVCF 
+            -ERC GVCF
     }
-    
+
     output {
         File output_gvcf = "${gvcf_name}"
     }
