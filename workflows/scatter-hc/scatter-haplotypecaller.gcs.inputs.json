@@ -4,10 +4,10 @@
   "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.java_opt": "-Xmx8G",
   "ScatterHaplotypeCallerGVCF.input_bam_index": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/mother.bai",
   "ScatterHaplotypeCallerGVCF.input_bam": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/mother.bam",
-  "ScatterHaplotypeCallerGVCF.MergeVCFs.docker_image": "broadinstitute/gatk:4.1.3.0",
+  "ScatterHaplotypeCallerGVCF.MergeVCFs.docker_image": "us.gcr.io/broad-gatk/gatk:4.1.3.0",
   "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.ref_fasta": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/ref/ref.fasta",
   "ScatterHaplotypeCallerGVCF.MergeVCFs.java_opt": "-Xmx8G",
   "ScatterHaplotypeCallerGVCF.intervals_list": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/intervals/snippet-intervals-min.list",
-  "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.docker_image": "broadinstitute/gatk:4.1.3.0"
+  "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.docker_image": "us.gcr.io/broad-gatk/gatk:4.1.3.0"
 }
 
