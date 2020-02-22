@@ -33,7 +33,7 @@ version 1.0
 # WORKFLOW DEFINITION
 workflow HaplotypeCallerGvcf_GATK4 {
 
-  inputs {
+  input {
     File input_bam
     File input_bam_index
     File ref_dict
