@@ -4,10 +4,10 @@
   "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.java_opt": "-Xmx8G",
   "ScatterHaplotypeCallerGVCF.input_bam_index": "../../data/germline/bams/mother.bai",
   "ScatterHaplotypeCallerGVCF.input_bam": "../../data/germline/bams/mother.bam",
-  "ScatterHaplotypeCallerGVCF.MergeVCFs.docker_image": "broadinstitute/gatk:4.1.3.0",
+  "ScatterHaplotypeCallerGVCF.MergeVCFs.docker_image": "us.gcr.io/broad-gatk/gatk:4.1.3.0",
   "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.ref_fasta": "../../data/germline/ref/ref.fasta",
   "ScatterHaplotypeCallerGVCF.MergeVCFs.java_opt": "-Xmx8G",
   "ScatterHaplotypeCallerGVCF.intervals_list": "../../data/germline/intervals/snippet-intervals-min.list",
-  "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.docker_image": "broadinstitute/gatk:4.1.3.0"
+  "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.docker_image": "us.gcr.io/broad-gatk/gatk:4.1.3.0"
 }
 

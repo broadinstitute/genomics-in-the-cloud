@@ -1,7 +1,7 @@
 {
-  "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.ref_index": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/ref/ref.fasta.fai",
-  "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.ref_dict": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/ref/ref.dict",
-  "ScatterHaplotypeCallerGVCF.HaplotypeCallerGVCF.java_opt": "-Xmx8G",
+  "HaplotypeCallerGVCF.ref_index": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/ref/ref.fasta.fai",
+  "HaplotypeCallerGVCF.ref_dict": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/ref/ref.dict",
+  "HaplotypeCallerGVCF.java_opt": "-Xmx8G",
   "ScatterHaplotypeCallerGVCF.input_bam_index": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/mother.bai",
   "ScatterHaplotypeCallerGVCF.input_bam": "gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/mother.bam",
   "ScatterHaplotypeCallerGVCF.MergeVCFs.docker_image": "us.gcr.io/broad-gatk/gatk:4.1.3.0",

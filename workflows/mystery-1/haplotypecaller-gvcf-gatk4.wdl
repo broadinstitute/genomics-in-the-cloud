@@ -39,7 +39,7 @@ workflow HaplotypeCallerGvcf_GATK4 {
   Boolean making_gvcf = select_first([make_gvcf,true])
 
   String? gatk_docker_override
-  String gatk_docker = select_first([gatk_docker_override, "broadinstitute/gatk:4.1.0.0"])
+  String gatk_docker = select_first([gatk_docker_override, "us.gcr.io/broad-gatk/gatk:4.1.0.0"])
   String? gatk_path_override
   String gatk_path = select_first([gatk_path_override, "/gatk/gatk"])
   String? gitc_docker_override
