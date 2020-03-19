@@ -48,8 +48,10 @@ def objective(baselexer):
         tokens = {
             'statements': [
                 (r'@"', String, 'string'),
+                (r"@'", String, 'string'),
+                (r'@\\$', String, 'string'),
                 (r'@(YES|NO)', Number),
-                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+                (r"@('\\$|\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
                 (r'@(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
                 (r'@(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
                 (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
@@ -77,7 +79,9 @@ def objective(baselexer):
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_forward_classname')),
                 # @ can also prefix other expressions like @{...} or @(...)
-                (r'@', Punctuation),
+                (r'\\$', Punctuation),
+                (r"['$@%#]+", Name.Variable),
+                #(r'@', Punctuation),
                 inherit,
             ],
             'oc_classname': [

@@ -25,6 +25,17 @@ are available.  The style argument is useful for quickly changing the
 look of the syntax highlighting.  See the [live demo](https://pygments.org/demo/#try)
 page for the list of possible styles.
 
+To generate HTML for all WDL in the repo use this script:
+
+    $ bash run_wdl_lexer.sh
+
+And look in the `html_output` directory.
+
+## Known Limitations
+
+Here are the known issues:
+* when command blocks include parameters that overlap with WDL keywords (such as `--create-output-variant-index`) you'll get `output` highlighted.  I'm looking at ways of excluding keywords that include '-' but I haven't been able to get this to work yet.
+
 ## Future
 
 This is a very, very rough lexer for WDL and, being based on the
