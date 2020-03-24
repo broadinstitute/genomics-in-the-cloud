@@ -3,7 +3,7 @@ Source code and related materials for Genomics in the Cloud by Geraldine A. Van 
 
 This is a work in progress, estimated release April 2020 
 
-Leaarn more at [https://oreil.ly/genomics-cloud](https://oreil.ly/genomics-cloud) or pre-order the book at [https://www.amazon.com/s?k=Genomics+in+the+Cloud&tag=oreilly20-20&ref=nb_sb_noss](https://www.amazon.com/s?k=Genomics+in+the+Cloud&tag=oreilly20-20&ref=nb_sb_noss)
+Leaarn more at [https://oreil.ly/genomics-cloud](https://oreil.ly/genomics-cloud) or pre-order the book [on Amazon](https://www.amazon.com/s?k=Genomics+in+the+Cloud&tag=oreilly20-20&ref=nb_sb_noss)
 
 
 ### Early Release description
