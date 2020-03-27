@@ -1,12 +1,12 @@
-## Copyright Broad Institute, 2019
+## Copyright Broad Institute, 2020
 ##
-## Copied from https://github.com/gatk-workflows/gatk4-germline-snps-indels/blob/master/haplotypecaller-gvcf-gatk4.wdl
+## Adapted from https://github.com/gatk-workflows/gatk4-germline-snps-indels/blob/master/haplotypecaller-gvcf-gatk4.wdl
 ##
 ## The haplotypecaller-gvcf-gatk4 workflow runs the HaplotypeCaller tool
 ## from GATK4 in GVCF mode on a single sample according to GATK Best Practices.
-## When executed the workflow scatters the HaplotypeCaller tool over a sample
+## When executed, the workflow scatters the HaplotypeCaller tool over a sample
 ## using an intervals list file. The output file produced will be a
-## single gvcf file which can be used by the joint-discovery workflow.
+## single GVCF file that can be used by the joint-discovery workflow.
 ##
 ## Requirements/expectations :
 ## - One analysis-ready BAM file for a single sample (as identified in RG:SM)
@@ -16,14 +16,14 @@
 ## - One GVCF file and its index
 ##
 ## Cromwell version support
-## - Successfully tested on v37
-## - Does not work on versions < v23 due to output syntax
+## - Successfully tested on v48
+## - Requires WDL 1.0 support
 ##
 ## Runtime parameters are optimized for Broad's Google Cloud Platform implementation.
 ##
 ## LICENSING :
 ## This script is released under the WDL source code license (BSD-3) (see LICENSE in
-## https://github.com/broadinstitute/wdl). Note however that the programs it calls may
+## https://github.com/openwdl/wdl). Note however that the programs it calls may
 ## be subject to different licenses. Users are responsible for checking that they are
 ## authorized to run all programs before running this script. Please see the dockers
 ## for detailed licensing information pertaining to the included programs.
