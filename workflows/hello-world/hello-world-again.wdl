@@ -31,7 +31,7 @@ task WriteGreeting {
 task ReadItBackToMe {
 
   input {
-     String = read_string(written_greeting)
+     String original_greeting = read_string(written_greeting)
   }
 
   command {
