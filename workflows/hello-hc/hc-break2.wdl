@@ -24,7 +24,7 @@ task HaplotypeCallerGVCF {
 	String gvcf_name = basename(input_bam, ".bam") + ".g.vcf"
 
 	# The tool name in this command is wrong 
-	$ (HaploCaller instead of HaplotypeCaller)
+	# (HaploCaller instead of HaplotypeCaller)
 	command {
 		gatk --java-options ${java_opt} HaploCaller \
 			-R ${ref_fasta} \
