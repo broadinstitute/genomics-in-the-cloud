@@ -1,5 +1,7 @@
 ## This workflow is intentionally broken!
 
+version 1.0 
+
 workflow HelloHaplotypeCaller {
 
 	call HaplotypeCallerGVCF
@@ -7,8 +9,8 @@ workflow HelloHaplotypeCaller {
 
 task HaplotypeCallerGVCF {
 
-input {
-String docker_image
+	input {
+		String docker_image
 		String java_opt
 	
 		File ref_fasta
