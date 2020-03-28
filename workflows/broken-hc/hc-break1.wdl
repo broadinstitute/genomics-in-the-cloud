@@ -1,4 +1,6 @@
-workflow BreakHaplotypeCaller {
+## This workflow is intentionally broken!
+
+workflow HelloHaplotypeCaller {
 
 	call HaplotypeCallerGVCF
 }
@@ -17,7 +19,8 @@ String docker_image
 		File intervals
 	}
 
-	String gvcf_name = basename(input_bam, ".bam") + ".g.vcf"
+	# The basename() function is missing its right parenthesis (rparen)
+	String gvcf_name = basename(input_bam, ".bam" + ".g.vcf"
 
 	command {
 		gatk --java-options ${java_opt} HaploCaller \
