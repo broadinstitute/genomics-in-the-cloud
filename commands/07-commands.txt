@@ -16,18 +16,87 @@ to run them.
 
 Commands:
 
+gatk Mutect2 \
+    -R reference.fasta \
+    -I normal_1.bam \
+    -O normal_1.vcf.gz \
+    --max-mnp-distance 0
 
+gatk GenomicsDBImport \
+    -R reference.fasta \
+    -L intervals.interval_list \
+    -V normal_1.vcf.gz \
+    -V normal_2.vcf.gz \
+    -V normal_3.vcf.gz \
+    --genomicsdb-workspace-path pon_db
 
+gatk CreateSomaticPanelOfNormals \
+    -R reference.fasta \
+    -V gendb://pon_db \
+    --germline-resource af-only-gnomad.vcf.gz \
+    -O pon.vcf.gz
 
+# zcat resources/chr17_m2pon.vcf.gz | grep -v '##' | head -3
 
+# cd /home/book/data/somatic
+# mkdir sandbox
 
+# gatk Mutect2 \
+    -R ref/Homo_sapiens_assembly38.fasta \
+    -I bams/tumor.bam \
+    -I bams/normal.bam \
+    -normal HCC1143_normal \
+    -L resources/chr17plus.interval_list \
+    -pon resources/chr17_m2pon.vcf.gz \
+    --germline-resource resources/chr17_af-only-gnomad_grch38.vcf.gz \
+    -bamout sandbox/m2_tumor_normal.bam \
+    -O sandbox/m2_somatic_calls.vcf.gz
 
+# gatk GetPileupSummaries \
+    -I bams/normal.bam \
+    -V resources/chr17_small_exac_common_3_grch38.vcf.gz \
+    -L resources/chr17_small_exac_common_3_grch38.vcf.gz \
+    -O sandbox/normal_getpileupsummaries.table
 
+# gatk GetPileupSummaries \
+    -I bams/tumor.bam \
+    -V resources/chr17_small_exac_common_3_grch38.vcf.gz \
+    -L resources/chr17_small_exac_common_3_grch38.vcf.gz \
+    -O sandbox/tumor_getpileupsummaries.table
 
+# head -5 sandbox/normal_getpileupsummaries.table
 
+# head -5 sandbox/tumor_getpileupsummaries.table
 
+# gatk CalculateContamination \
+    -I sandbox/tumor_getpileupsummaries.table \
+    -matched sandbox/normal_getpileupsummaries.table \
+    -tumor-segmentation sandbox/segments.table \
+    -O sandbox/pair_calculatecontamination.table
 
-$ gatk PreprocessIntervals \
+$ cat sandbox/pair_calculatecontamination.table
+
+# gatk FilterMutectCalls \
+    -R ref/Homo_sapiens_assembly38.fasta \
+    -V sandbox/m2_somatic_calls.vcf.gz \
+    --contamination-table sandbox/pair_calculatecontamination.table \
+    -O sandbox/m2_somatic_calls.filtered.vcf.gz \
+    --stats sandbox/m2_somatic_calls.vcf.gz.stats \
+    --tumor-segmentation sandbox/segments.table
+
+# gatk Funcotator \
+    --data-sources-path resources/funcotator_dataSources_GATK_Workshop_20181205/ \
+    --ref-version hg38 \
+    -R ref/Homo_sapiens_assembly38.fasta \
+    -V sandbox/m2_somatic_calls.filtered.vcf.gz \
+    -O sandbox/m2_somatic_calls.funcotated.vcf.gz \
+    --output-file-format VCF
+
+# zcat sandbox/m2_somatic_calls.funcotated.vcf.gz | grep -v '##' | head -3
+
+# zcat sandbox/m2_somatic_calls.funcotated.vcf.gz | grep 7674220
+
+# gatk PreprocessIntervals \
     -R ref/Homo_sapiens_assembly38.fasta \
     -L resources/targets_chr17.interval_list \
     -O sandbox/targets_chr17.preprocessed.interval_list \
@@ -35,7 +104,7 @@ $ gatk PreprocessIntervals \
     --bin-length 0 \
     --interval-merging-rule OVERLAPPING_ONLY
 
-$ gatk CollectReadCounts \
+# gatk CollectReadCounts \
     -I bams/tumor.bam \
     -L sandbox/targets_chr17.preprocessed.interval_list \
     -R ref/Homo_sapiens_assembly38.fasta \
@@ -43,17 +112,23 @@ $ gatk CollectReadCounts \
     --format TSV \
     -imr OVERLAPPING_ONLY
 
-$ head -5 sandbox/tumor.counts.tsv
+# head -5 sandbox/tumor.counts.tsv
 
-$ tail -5 sandbox/tumor.counts.tsv
+# tail -5 sandbox/tumor.counts.tsv
 
-$ gatk DenoiseReadCounts \
+gatk CreateReadCountPanelOfNormals \
+    -I file1_clean.counts.hdf5 \
+    …
+    -I file40_clean.counts.hdf5 \
+    -O cnaponC.pon.hdf5
+
+# gatk DenoiseReadCounts \
     -I cna_inputs/hcc1143_T_clean.counts.hdf5 \
     --count-panel-of-normals cna_inputs/cnaponC.pon.hdf5 \
     --standardized-copy-ratios sandbox/hcc1143_T_clean.standardizedCR.tsv \
     --denoised-copy-ratios sandbox/hcc1143_T_clean.denoisedCR.tsv
 
-$ gatk PlotDenoisedCopyRatios \
+# gatk PlotDenoisedCopyRatios \
     --sequence-dictionary ref/Homo_sapiens_assembly38.dict \
     --standardized-copy-ratios sandbox/hcc1143_T_clean.standardizedCR.tsv \
     --denoised-copy-ratios sandbox/hcc1143_T_clean.denoisedCR.tsv \
@@ -61,12 +136,15 @@ $ gatk PlotDenoisedCopyRatios \
     --output sandbox/cna_plots \
     --output-prefix hcc1143_T_clean
 
-$ gatk ModelSegments \
+$ export BUCKET="gs://my-bucket"
+$ gsutil -m cp -R sandbox/cna_plots $BUCKET/somatic-sandbox/
+
+# gatk ModelSegments \
     --denoised-copy-ratios sandbox/hcc1143_T_clean.denoisedCR.tsv \
     --output sandbox  \
     --output-prefix hcc1143_T_clean
 
-$ gatk PlotModeledSegments \
+# gatk PlotModeledSegments \
     --denoised-copy-ratios sandbox/hcc1143_T_clean.denoisedCR.tsv \
     --segments sandbox/hcc1143_T_clean.modelFinal.seg \
     --sequence-dictionary ref/Homo_sapiens_assembly38.dict \
@@ -74,8 +152,8 @@ $ gatk PlotModeledSegments \
     --output sandbox/cna_plots \
     --output-prefix hcc1143_T_clean
 
-$ gatk CallCopyRatioSegments \
+# gatk CallCopyRatioSegments \
     -I sandbox/hcc1143_T_clean.cr.seg \
     -O sandbox/hcc1143_T_clean.called.seg
 
-$ tail -5 sandbox/hcc1143_T_clean.called.seg
+# tail -5 sandbox/hcc1143_T_clean.called.seg
