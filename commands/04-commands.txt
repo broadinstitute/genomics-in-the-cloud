@@ -1,16 +1,43 @@
-$ gsutil ls gs://genomics-on-the-cloud
+About:
 
-$ gsutil cat gs://genomics-on-the-cloud/hello.txt
+This is a simple text file that contains the commands present in
+chapter 4.  We created this file to prevent readers from having
+to type out commands from our book.  This is not a stand-alone
+tutorial, you'll want to follow along in the chapter to get
+context on what these commands do.
 
-$ gsutil cp gs://genomics-on-the-cloud/hello.txt .
+Conventions:
 
-$ gsutil mb gs://my-bucket/
+Commands you run on your cloud shell or VM begin with "$".
+Commands you run within a Docker container begin with "#".
 
-$ gsutil cp gs://genomics-on-the-cloud/hello.txt gs://my-bucket/
+Commands:
 
-$ gsutil cp hello.txt gs://my-bucket/
+$ gcloud config set project ferrous-layout-260200
 
-$ gsutil cp gs://my-bucket/hello.txt gs://my-bucket/my-directory/hello.txt
+$ ls
+
+$ cat README-cloudshell.txt
+
+$ gsutil ls gs://genomics-in-the-cloud
+
+$ gsutil cat gs://genomics-in-the-cloud/hello.txt
+
+$ gsutil cp gs://genomics-in-the-cloud/hello.txt .
+
+$ ls
+
+$ gsutil mb gs://my-bucket
+
+$ export BUCKET="gs://my-bucket"
+
+$ echo $BUCKET
+
+$ gsutil cp gs://genomics-in-the-cloud/hello.txt $BUCKET/
+
+$ gsutil cp hello.txt $BUCKET/
+
+$ gsutil cp $BUCKET/hello.txt $BUCKET/my-directory/
 
 $ docker pull ubuntu
 
@@ -18,34 +45,44 @@ $ docker run ubuntu
 
 $ docker run ubuntu echo "Hello World!"
 
-$ docker run -it ubuntu
+$ docker run -it ubuntu /bin/bash
 
 $ docker ps -a
 
-$ mkdir book-data
+$ mkdir book
 
-$ mv hello.txt book-data/
+$ mv hello.txt book/
 
-$ ls book-data
+$ ls book
 
-$ docker run -v ~/book-data:/home/book-data -it ubuntu
+$ docker run -v ~/book:/home/book -it ubuntu /bin/bash
 
-# ls home/book-data
+# ls home/book
 
 $ gcloud init
 
-$ gsutil -m cp -r gs://genomics-on-the-cloud/book-data-v0/* book-data
+$ mkdir ~/book
 
-$ git clone https://github.com/broadinstitute/genomics-on-the-cloud.git
+$ gsutil -m cp -r gs://genomics-in-the-cloud/v1/* ~/book/
+
+$ cd ~/book
+
+$ git clone https://github.com/broadinstitute/genomics-in-the-cloud.git code
+
+$ cd ~/book/code
+
+$ git pull
 
 $ docker
 
-$ curl -sSL https://get.docker.com/ | sh 
+$ curl -sSL https://get.docker.com/ | sh
 
 $ sudo usermod -aG docker $USER
 
 $ exit
 
-$ docker pull broadinstitute/gatk:4.1.3.0
+$ docker pull us.gcr.io/broad-gatk/gatk:4.1.3.0
 
-$ docker run -v ~/book-data:/home/book-data -it broadinstitute/gatk:4.1.3.0
+$ docker run -v ~/book:/home/book -it us.gcr.io/broad-gatk/gatk:4.1.3.0 /bin/bash
+
+# gatk

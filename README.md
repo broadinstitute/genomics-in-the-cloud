@@ -29,6 +29,27 @@ This book takes you through:
 
 See the [commands](commands/) folder for text files that let you easily copy and paste commands you find in our chapters
 
+### Figures
+
+Since some of you may not have purchased the full color version
+of the book, we've made the figures available in the [figures](figures/) directory.  Feel free to use these
+figures in your work (with the exception of figures 6-15)
+
 ### Blog & Website
 
 We host a GitHub website for the book at [https://broadinstitute.github.io/genomics-in-the-cloud/](https://broadinstitute.github.io/genomics-in-the-cloud/) where we will publish blog posts, additional tutorials, errata for the book, and a regular update on changes to Terra that readers should be aware of.
+
+### Reporting Errors
+
+If you encounter errors in the book please file a
+[new issue](https://github.com/broadinstitute/genomics-in-the-cloud/issues/new) on our GitHub site.  This will help us track
+needed fixes and make sure they get into O'Reilly's errata
+system (which will eventually produce updated ebooks and
+future print copies so others won't run into the same issues).
+
+### Getting Help
+
+Terra and GATK are big community of many active users.  If you
+run into problems that are not specific to the book for
+either Terra or GATK consider posting your questions to the
+[Terra](https://support.terra.bio/hc/en-us) and [GATK](https://gatk.broadinstitute.org/hc/en-us/community/topics) user forums.
