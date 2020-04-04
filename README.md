@@ -33,7 +33,11 @@ See the [commands](commands/) folder for text files that let you easily copy and
 
 Since some of you may not have purchased the full color version
 of the book, we've made the figures available in the [figures](figures/) directory.  Feel free to use these
-figures in your work (with the exception of figures 6-15)
+figures in your non-commercial work (with the exception of
+figures 3-3 and 6-15
+which you must request permission from their respective owners).  Attribution is appreciated if you use our
+figures in your work.  For commercial use please contact
+permissions@oreilly.com.
 
 ### Blog & Website
 
