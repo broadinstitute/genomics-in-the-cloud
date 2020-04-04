@@ -10,6 +10,9 @@ Conventions:
 
 Commands you run on your cloud shell or VM begin with "$".
 Commands you run within a Docker container begin with "#".
+Commands lacking an initial "$" or "#" are typically
+provided for illustration purposes and we don't expect you
+to run them.
 
 Commands:
 
