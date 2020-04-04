@@ -1,59 +1,94 @@
+About:
+
+This is a simple text file that contains the commands present in
+chapter 5.  We created this file to prevent readers from having
+to type out commands from our book.  This is not a stand-alone
+tutorial, you'll want to follow along in the chapter to get
+context on what these commands do.
+
+Conventions:
+
+Commands you run on your cloud shell or VM begin with "$".
+Commands you run within a Docker container begin with "#".
+Commands lacking an initial "$" or "#" are typically
+provided for illustration purposes and we don't expect you
+to run them.
+
+Commands:
+
 $ java -version
 
 $ sudo apt install openjdk-8-jre-headless
 
 $ java -version
 
-$ curl -L -O https://github.com/broadinstitute/cromwell/releases/download/44/cromwell-44.jar
+$ export BIN=~/book/bin
 
-$ curl -L -O https://github.com/broadinstitute/cromwell/releases/download/44/womtool-44.jar
+$ curl -L -o ~/book/bin/cromwell-48.jar \
+https://github.com/broadinstitute/cromwell/releases/download/48/cromwell-48.jar
 
-$ java -jar cromwell-44.jar --help
+$ java -jar $BIN/cromwell-48.jar --help
 
-$ java -jar womtool-44.jar --help
+$ java -jar $BIN/womtool-48.jar --help
+
+$ export WF=~/book/code/workflows
+
+$ nano $WF/hello-world/hello-world.wdl
 
 $ echo "Hello World"
 
-$ java -jar cromwell-44.jar run hello-world/hello-world.wdl
+$ java -jar $BIN/cromwell-48.jar run $WF/hello-world/hello-world.wdl
 
-$ java -jar cromwell-44.jar \
-	run hello-world/hello-world-var.wdl \
-	-i hello-world/hello-world.inputs.json
+$ cat ~/cromwell-executions/HelloWorld/b6d224b0-ccee-468f-83fa-
+ab2ce7e62ab7/call-WriteGreeting/execution/stdout
 
-$ java -jar womtool-44.jar \
-    inputs workflows/hello-haplotypecaller.wdl \
-    > sandbox/hello-haplotypecaller.inputs.json
+$ nano $WF/hello-world/hello-world-var.wdl
 
-$ cat hello-haplotypecaller.inputs.json
+$ java -jar $BIN/cromwell-48.jar run $WF/hello-world/hello-world-var.wdl \
+-i $WF/hello-world/hello-world.inputs.json
 
-$ cat workflows/hello-haplotypecaller.inputs.json
+$ nano $WF/hello-world/hello-world-again.wdl
 
-$ java -jar cromwell-44.jar \
-    run workflows/hello-haplotypecaller.wdl \
-    -i workflows/hello-haplotypecaller.inputs.json
+$ nano $WF/hello-hc/hello-haplotypecaller.wdl
 
-$ head /home/username/cromwell-executions/HelloHaplotypeCaller/9a6a9c97-7453-455c-8cd8-be8af8cb6f7c/call-HaplotypeCallerGVCF/execution/mother.g.vcf
+$ mkdir ~/sandbox-8
 
-$ cp workflows/hello-haplotypecaller.wdl sandbox/break-haplotypecaller.wdl
+$ java -jar $BIN/womtool-48.jar \
+    inputs $WF/hello-hc/hello-haplotypecaller.wdl \
+    > ~/sandbox-8/hello-haplotypecaller.inputs.json
 
-$ java -jar cromwell-44.jar \
-	run sandbox/break-haplotypecaller.wdl \
-	-i workflows/hello-haplotypecaller.inputs.json
+$ cat ~/sandbox-8/hello-haplotypecaller.inputs.json
 
-$ java -jar womtool-44.jar \
-	validate sandbox/break-haplotypecaller.wdl 
+$ cat $WF/hello-hc/hello-haplotypecaller.inputs.json
 
-$ java -jar cromwell-44.jar \
-	run sandbox/break-haplotypecaller.wdl \
-	-i workflows/hello-haplotypecaller.inputs.json
+$ java -jar $BIN/cromwell-48.jar \
+    run $WF/hello-hc/hello-haplotypecaller.wdl \
+    -i $WF/hello-hc/hello-haplotypecaller.inputs.json
+
+$ head ~/cromwell-executions/HelloHaplotypeCaller/9a6a9c97-7453-455c
+-8cd8-be8af8cb6f7c/call-HaplotypeCallerGVCF/execution/mother.g.vcf
+
+$ cp $WF/hello-hc/hello-haplotypecaller.wdl ~/sandbox-8/hc-break1.wdl
+
+$ java -jar $BIN/cromwell-48.jar \
+    run ~/sandbox-8/hc-break1.wdl \
+    -i $WF/hello-hc/hello-haplotypecaller.inputs.json
+
+$ java -jar $BIN/womtool-48.jar \
+    validate ~/sandbox-8/hc-break1.wdl
+
+$ java -jar $BIN/cromwell-48.jar \
+    run ~/sandbox-8/hc-break2.wdl \
+    -i $WF/hello-hc/hello-haplotypecaller.inputs.json
 
 $ cat /home/username/cromwell-executions/HelloHaplotypeCaller/dd77316f-7c18-4eb1-aa86-e307113c1668/call-HaplotypeCallerGVCF/execution/stderr
 
-$ java -jar womtool-44.jar graph \
-workflows/scatter-haplotypecaller.wdl > scatter-haplotypecaller.dot
+$ nano $WF/scatter-hc/scatter-haplotypecaller.wdl
 
-$ cat scatter-haplotypecaller.dots
+$ java -jar $BIN/cromwell-48.jar \
+    run $WF/scatter-hc/scatter-haplotypecaller.wdl \
+    -i $WF/scatter-hc/scatter-haplotypecaller.local.inputs.json
 
-
-
-
+$ java -jar $BIN/womtool-48.jar \
+    graph $WF/scatter-hc/scatter-haplotypecaller.wdl \
+    > ~/sandbox-8/scatter-haplotypecaller.dot
