@@ -1,4 +1,0 @@
-entity:book_samples_id	input_bam	input_bam_index
-mother	gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/mother.bam	gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/mother.bai
-father	gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/father.bam	gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/father.bai
-son	gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/son.bam	gs://genomics-on-the-cloud/book-bundle-v0/data/germline/bams/son.bai
