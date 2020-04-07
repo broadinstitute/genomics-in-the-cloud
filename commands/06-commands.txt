@@ -1,0 +1,158 @@
+About:
+
+This is a simple text file that contains the commands present in
+chapter 5.  We created this file to prevent readers from having
+to type out commands from our book.  This is not a stand-alone
+tutorial, you'll want to follow along in the chapter to get
+context on what these commands do.
+
+Conventions:
+
+Commands you run on your cloud shell or VM begin with "$".
+Commands you run within a Docker container begin with "#".
+Commands lacking an initial "$" or "#" are typically
+provided for illustration purposes and we don't expect you
+to run them.
+
+Commands:
+
+bwa mem -M -t 7 -p reference.fasta unmapped_reads.fq > mapped_reads.sam
+
+gatk MarkDuplicates \
+    -R reference.fasta \
+    -I mapped_reads_rg1.bam \
+    -I mapped_reads_rg2.bam \
+    -I mapped_reads_rg3.bam \
+    -O sample_markdups.bam
+
+gatk BaseRecalibrator \
+    -R reference.fasta \
+    -I sample_markdups.bam \
+    --known-sites known_variation.vcf \
+    -O recal_data.table
+
+gatk ApplyBQSR \
+    -R reference.fasta \
+    -I sample_markdups.bam \
+    --bqsr-recal-file recal_data.table \
+    -O sample_markdups_recal.bam
+
+# gatk HaplotypeCaller \
+    -R ref/ref.fasta \
+    -I bams/mother.bam \
+    -O sandbox/mother_variants.200k.g.vcf.gz \
+    -L 20:10,000,000-10,200,000 \
+    -ERC GVCF
+
+# zcat sandbox/mother_variants.200k.g.vcf.gz | grep -v '##' | head -3
+
+# gatk GenomicsDBImport \
+    -V gvcfs/mother.g.vcf.gz \
+    -V gvcfs/father.g.vcf.gz \
+    --genomicsdb-workspace-path sandbox/trio-gdb \
+    --intervals 20:10,000,000-10,200,000
+
+# gatk SelectVariants \
+    -R ref/ref.fasta \
+    -V gendb://sandbox/trio-gdb \
+    -O sandbox/duo_selectvariants.g.vcf.gz
+
+$ zcat sandbox/duo_selectvariants.g.vcf.gz | grep -v '##' | head -3
+
+# gatk GenomicsDBImport \
+    -V gvcfs/son.g.vcf.gz \
+    --genomicsdb-update-workspace-path sandbox/trio-gdb
+
+# gatk SelectVariants \
+    -R ref/ref.fasta \
+    -V gendb://sandbox/trio-gdb \
+    -O sandbox/trio_selectvariants.g.vcf.gz
+
+$ zcat sandbox/trio_selectvariants.g.vcf.gz | grep -v '##' | head -3
+
+# gatk GenotypeGVCFs \
+    -R ref/ref.fasta \
+    -V gendb://sandbox/trio-gdb \
+    -O sandbox/trio-jointcalls.vcf.gz \
+    -L 20:10,000,000-10,200,000
+
+# zcat sandbox/trio-jointcalls.vcf.gz | grep -v '##' | head -3
+
+# gatk HaplotypeCaller \
+    -R ref/ref.fasta \
+    -I bams/mother.bam \
+    -I bams/father.bam \
+    -I bams/son.bam \
+    -O sandbox/trio_jointcalls_hc.vcf.gz \
+    -L 20:10,000,000-10,200,000
+
+gatk VariantRecalibrator \
+   -R reference.fasta \
+   -V jointcalls_hc.vcf.gz \
+   --resource:hapmap,known=false,training=true,truth=true,prior=15.0 \
+   hapmap_sites.vcf.gz \
+   --resource:omni,known=false,training=true,truth=false,prior=12.0 \
+   1000G_omni2.5.sites.vcf.gz \
+   --resource:1000G,known=false,training=true,truth=false,prior=10.0 \
+   1000G_phase1.snps.high_conf.vcf.gz \
+   --resource:dbsnp,known=true,training=false,truth=false,prior=2.0 dbsnp.vcf.gz \
+   -an QD -an MQ -an MQRankSum -an ReadPosRankSum -an FS -an SOR \
+   -mode SNP \
+   -O output.recal \
+   --tranches-file output.tranches
+
+gatk ApplyVQSR \
+    -R reference.fasta \
+    -V jointcalls_hc.vcf.gz \
+    -O jointcalls_filtered.vcf.gz \
+    --truth-sensitivity-filter-level 99.9 \
+    --tranches-file output.tranches \
+    --recal-file output.recal \
+    -mode SNP
+
+# gatk CalculateGenotypePosteriors \
+    -V sandbox/trio-jointcalls.vcf.gz \
+    -ped resources/trio-pedigree.ped \
+    --supporting-callsets resources/af-only-gnomad.vcf.gz \
+    -O sandbox/trio-refined.vcf.gz
+
+# cd ../cnn
+# mkdir sandbox
+# ls
+
+# gatk CNNScoreVariants \
+    -R ref/Homo_sapiens_assembly19.fasta \
+    -V vcfs/g94982_b37_chr20_1m_15871.vcf.gz \
+    -O sandbox/my_1d_cnn_scored.vcf
+
+
+# gatk FilterVariantTranches \
+    -V sandbox/my_1d_cnn_scored.vcf \
+    -O sandbox/my_1d_cnn_filtered.vcf \
+    --resource resources/1000G_omni2.5.b37.vcf.gz \
+    --resource resources/hapmap_3.3.b37.vcf.gz \
+    --info-key CNN_1D \
+    --snp-tranche 99.9 \
+    --indel-tranche 95.0
+
+# cat sandbox/my_1d_cnn_filtered.vcf | grep -v '##' | head -3
+
+# gatk CNNScoreVariants \
+    -R ref/Homo_sapiens_assembly19.fasta \
+    -I bams/g94982_chr20_1m_10m_bamout.bam \
+    -V vcfs/g94982_b37_chr20_1m_895.vcf \
+    -O sandbox/my_2d_cnn_scored.vcf \
+    --tensor-type read_tensor \
+    --transfer-batch-size 8 \
+    --inference-batch-size 8
+
+# gatk FilterVariantTranches \
+    -V sandbox/my_2d_cnn_scored.vcf \
+    -O sandbox/my_2d_cnn_filtered.vcf \
+    --resource resources/1000G_omni2.5.b37.vcf.gz \
+    --resource resources/hapmap_3.3.b37.vcf.gz \
+    --info-key CNN_2D \
+    --snp-tranche 99.9 \
+    --indel-tranche 95.0
+
+# cat sandbox/my_2d_cnn_filtered.vcf | grep -v '##' | head -3
