@@ -1,0 +1,19 @@
+---
+layout: post
+title: Drawing on a near-decade of interdisciplinary lessons learned
+---
+
+If you'll forgive a bit of self-indulgence, for today's blog post I thought I would share a bit of background on how I came to writing about genomics and cloud technology, and my hopes for how our book can help solve some of the key issues that make onboarding so difficult for many newcomers to the field. 
+
+I studied Biology in college, specialized in microbial genetics (in a wetlab) for my PhD, and never had an ounce of formal computational training. I taught myself rudiments of Perl in order to automate some BLAST analyses for my thesis work, then branched out into Python when my work started taking an increasingly computational turn. By the end of my postdoc, I had written a lot of code for a pipette jockey -- but it was still rather, shall we say, artisanal.
+ 
+Then, for reasons that I'll save for another time, I decided to leave the academic research path. I somehow landed a job doing tech support, documentation and outreach for the GATK team at the Broad Institute, that powerhouse of human genomics, and my entire world changed. First, switching from microbes to humans (kinda different), learning the ropes of large-scale genomics (the file formats omg) and getting to grips with GATK (variant what now?); then moving to the cloud when the Broad became an early adopter of cloud computing for genomics. It was just a constant barrage of new challenges. For example, I remember when I originally started hearing about Docker containers; I didn't really understand what they were and anything I googled on the topic seemed awfully complicated. And I'll admit, getting used to working with cloud storage was rough too. What do you mean it's not a filesystem? What's object storage? Buckets? Wait, did we suddenly shift to talking about closet organizers?
+ 
+**Real talk.** Many researchers with a bio/medical background are getting thrust into the world of high-performance computing -- and increasingly, cloud computing specifically -- without any formal preparation or training. Meanwhile, IT professionals of all stripes are getting tasked with supporting the needs of research groups in this space, often without receiving any real subject matter education. Sadly, if predictably, these training gaps across the bio/info spectrum have important adverse consequences -- for the efficiency (including cost!) of the research process, and for the well-being and career development opportunities of individuals.
+ 
+For this first almost-decade of my post-postdoc career, my job has been to help people from a wide range of backgrounds get proficient with tools and topics that they'd never been properly trained to tackle. I've seen a lot of very smart people floundering, overwhelmed and frustrated by the jargon and sometimes byzantine complexity of bioinformatics. I've learned a lot about what trips people up and how to get them back on their feet.
+ 
+When Brian and I started this project, I simply wanted this book to be the distillation of everything I have learned in this space -- what do you need to know to get started, in what order do you tackle the various concepts and tools, and how do you move beyond the basic examples that you find in online tutorials? I'm pleased to say the end result exceeds my expectations, thanks to Brian's perspective as an engineer and his own extensive domain experience, which I hope to convince him to blog about at some point.
+
+If you decide to pick up this book, I hope it will be helpful to you in your own journey, whatever shape that may take. 
+ 
