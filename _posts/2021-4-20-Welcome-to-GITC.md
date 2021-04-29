@@ -13,10 +13,7 @@ Truth be told, we had actually planned to start this blog when the book came out
 
 But you know what, it works out. In that time, a lot of people have read the book and given us really useful feedback, so we have a decent picture of what people are looking for in the book and what they're getting out of it. We're pretty lucky that the tools we cover in the book have been fairly stable, so the content is still current. And we're in close contact with the relevant development teams, so we're able to plan revisions for some of the more substantial tool updates that are looming (spoiler: DRAGEN-GATK doesn't change much in practice in terms of tool invocations in the hands-on exercises). 
 
-
-### How often can you expect updates? 
-
-We're aiming to put out new blog posts every couple of weeks. We don't have anything set up yet for subscribing to the blog specifically, but it's all contained within the Github repository where we store the book materials, so you can set the Github "watch repository" option to "All notifications" to get notified when anything changes. That does require signing up for a Github account if you don't already have one. (You should really get one anyway so this as good a time as any to cross that bridge!) 
+We're aiming to put out new blog posts every couple of weeks. We don't have anything set up yet for subscribing to the blog specifically, but it's all contained within the Github repository where we store the book materials, so you can set the Github "watch repository" option to "All notifications" to get notified when anything changes. That does require signing up for a Github account if you don't already have one, but rest assured it will come in handy later on, so this as good a time as any to cross that bridge.
 
 ----
 
