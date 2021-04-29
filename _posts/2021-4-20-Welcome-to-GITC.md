@@ -7,7 +7,8 @@ Hi! My name is Geraldine Van der Auwera; I'm one of the two authors of Genomics 
 
 In a nutshell, we envision this blog as a companion resource that will educate, inspire and possibly entertain you. We plan to cover topics like why you might want to read the book, how people are using what they learned from it in their work or studies, what has changed since the book came out, and, importantly, what we are revising to keep the content current as time passes and the tooling evolves. In addition to that, we're also going to cover some materials and topics that we weren't able to fit into the book itself because it was already over 400 pages long and our editor was adamant that it all had to fit in a single volume 🤷 
 
-----
+
+### Why start this now?
 
 Truth be told, we had actually planned to start this blog when the book came out in April 2020, but life (and a pandemic) got in the way, so here we are, a year later. 
 

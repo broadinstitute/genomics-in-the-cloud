@@ -7,12 +7,11 @@ Are you ever frustrated by how little actionable information you can find in boo
 
 And frankly, I think our book is no exception -- when I look at the [Amazon listing](https://www.amazon.com/Genomics-Cloud-GATK-Spark-Docker-dp-1491975199/dp/1491975199) (which we don't have direct control over as authors), I can't help thinking that if I were browsing it as a prospective user, I would have a hard time deciding whether or not it was right for me. So I decided to write a short series of blog posts dedicated to providing insight into "What's in the can?", ie what our book is about, and what it's like to work through, to supplement the information provided in the listing.
 
-----
-
 In this first installment, I recycled an [old Twitter thread](https://twitter.com/VdaGeraldine/status/1263336914859560962?s=20) that people seemed to find helpful, consisting of one tweet per chapter, each providing a brief and informal description of the chapter's topic and goals. The format and Twitter's brutally low character limit forced me to be very concise, and really drill down to the essentials. As part of that, I decided to emphasize the progression from one topic to the next, to reflect our vision of the book as an educational journey rather than a collection of facts. 
 
 Here we go.
 
+----
 
 ### 1. Introduction
 Why you should care about the cloud, and how bioinformatics / life sciences research benefits from moving to a cloud-based ecosystem for data sharing and analysis. No, the cloud environment is not perfect; yes, it really is a game changer.
