@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What's in the can? Part 1: A casual take on the Table of Contents
+title: A casual take on the Table of Contents
 ---
 
 Are you ever frustrated by how little actionable information you can find in book listings when you shop online? In a physical store at least you could leaf through any part of the book to get a really good sense of what it covers and to what level of detail, but online you're really limited to the general summary and whatever the publisher chooses to make available as a content preview. 
@@ -55,4 +55,4 @@ Capstone case study on computational reproducibility involving synthetic data cr
 
 What you think? Helpful at all? 
 
-In the next installment of "What's in the can?", I'll cover reader reviews, since that's also a source of information that a lot of people use when making a purchase decision. 
+In the next installment of "What's in the can?", we'll talk about the semi-official [companion booklet](https://storage.googleapis.com/genomics-in-the-cloud/figures/Genomics_in_the_Cloud___Figures_Booklet.pdf) we made for the book figures.
