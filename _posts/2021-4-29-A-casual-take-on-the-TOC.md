@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A casual take on the Table of Contents
+title: A whistlestop tour of the book contents
 ---
 
 Are you ever frustrated by how little actionable information you can find in book listings when you shop online? In a physical store at least you could leaf through any part of the book to get a really good sense of what it covers and to what level of detail, but online you're really limited to the general summary and whatever the publisher chooses to make available as a content preview. 
