@@ -5,6 +5,8 @@ title: Welcome to Genomics in the Cloud — The Blog
 
 Hi! My name is Geraldine Van der Auwera; I'm one of the two authors of Genomics in the Cloud, an O'Reilly animal book about the science of genomics and how to apply it in practice using cloud computing infrastructure. On behalf of my coauthor Brian O'Connor and myself, I'd like to introduce this blog with a brief mission statement to set expectations about what you're likely to find here. 
 
+![Selfie with book](https://pbs.twimg.com/media/EjL8XgwXYAAkYEi?format=jpg&name=small)
+
 In a nutshell, we envision this blog as a companion resource that will educate, inspire and possibly entertain you. We plan to cover topics like why you might want to read the book, how people are using what they learned from it in their work or studies, what has changed since the book came out, and, importantly, what we are revising to keep the content current as time passes and the tooling evolves. In addition to that, we're also going to cover some materials and topics that we weren't able to fit into the book itself because it was already over 400 pages long and our editor was adamant that it all had to fit in a single volume 🤷 
 
 
